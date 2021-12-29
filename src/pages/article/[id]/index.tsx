@@ -10,7 +10,7 @@ const ArticleComponent = ({ article }: { article: Article }) => {
 
   return (
     <>
-      <Meta title={article.title} />
+      <Meta title={article.title} description={article.excerpt}/>
       <h1>{article.title}</h1>
       <p>{article.body}</p>
       <br />
