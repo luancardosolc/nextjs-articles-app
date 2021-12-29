@@ -1,11 +1,14 @@
+import { useRouter } from "next/router"
 
 
-const article = () => {
+const Article = () => {
+  const router = useRouter();
+  const {id} = router.query;
   return (
     <div>
-      This is an article
+      This is an article {id}
     </div>
   )
 }
 
-export default article
+export default Article
