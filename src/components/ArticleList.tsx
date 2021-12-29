@@ -1,12 +1,13 @@
 import articleStyle from '../styles/Article.module.css';
 import Article from '../types/article';
+import ArticleItem from './ArticleItem';
 
 const ArticleList = (props: any) => {
   const { articles } = props;
   return (
     <div className={ articleStyle.grid}>
       {articles.map((article: Article) => (
-        <h3 key={'article-' + article.id}>{article.id} - {article.title}</h3>
+        <ArticleItem article={article} key={'article-' + article.id} />
       ))}
     </div>
   )
