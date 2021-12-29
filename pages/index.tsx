@@ -1,19 +1,8 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetStaticPropsContext } from 'next'
 import Head from 'next/head'
+import Article from '../types/article';
 
-export const getStaticProps = async () => {
-  console.log('testando ando');
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`);
-  const articles = await res.json();
-
-  return {
-    props: {
-      articles
-    }
-  }
-}
-
-const Home: NextPage = ({ articles }) => {
+const Home = (articles: Article[]) => {
   console.log('articles', articles);
   return (
     <div>
@@ -27,3 +16,15 @@ const Home: NextPage = ({ articles }) => {
 }
 
 export default Home
+
+export const getStaticProps = async () => {
+  console.log('testando ando');
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`);
+  const articles = await res.json();
+
+  return {
+    props: {
+      articles
+    }
+  }
+}
