@@ -1,8 +1,9 @@
-import type { NextPage, GetStaticPropsContext } from 'next'
 import Head from 'next/head'
+import { Key } from 'react';
 import Article from '../types/article';
 
-const Home = (articles: Article[]) => {
+const Home = (props: any) => {
+  const { articles } = props;
   console.log('articles', articles);
   return (
     <div>
@@ -10,7 +11,7 @@ const Home = (articles: Article[]) => {
         <title>NextJS Article App</title>
         <meta name='keyworkds' content='web development, programming, nextjs, javascript' />
       </Head>
-      <h1>Welcome to articles app</h1>
+      {articles.map((article: Article) => <h3 key={'article-' + article.id}>{article.id} - {article.title}</h3>)}
     </div>
   )
 }
@@ -18,7 +19,6 @@ const Home = (articles: Article[]) => {
 export default Home
 
 export const getStaticProps = async () => {
-  console.log('testando ando');
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`);
   const articles = await res.json();
 
