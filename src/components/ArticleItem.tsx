@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import articleStyle from '../styles/Article.module.css';
+import Article from '../types/article';
 
-const ArticleItem = (props: any) => {
-  const { article } = props;
-
+const ArticleItem = ({ article }: { article: Article }) => {
   return (
     <Link href="/article/[id]" as ={`/article/${article.id}`}>
       <a className={articleStyle.card}>

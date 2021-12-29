@@ -1,21 +1,24 @@
+import Link from "next/link";
 import { useRouter } from "next/router"
+import Article from '../../../types/article';
 
-
-const ArticleComponent = (props: any) => {
-  const { article } = props;
+const ArticleComponent = ({ article }: { article: Article }) => {
   const router = useRouter();
-  const {id} = router.query;
-  console.log('article', article);
+  const { id } = router.query;
+
   return (
-    <div>
-      This is an article {id}
-    </div>
+    <>
+      <h1>{article.title}</h1>
+      <p>{article.body}</p>
+      <br />
+      <Link href='/'> Go Back</Link>
+    </>
   )
 }
 
-export const getServerSideProps = async (context: any) => {
+export const getStaticProps = async (context: any) => {
   const rest = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`)
-  
+
   const article = await rest.json();
 
   return {
@@ -23,6 +26,21 @@ export const getServerSideProps = async (context: any) => {
       article
     }
   }
+}
+
+export const getStaticPaths = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+
+  const articles = await res.json();
+
+  const ids = articles.map((article: Article) => article.id);
+  const paths = ids.map((id: any) => ({params: {id: id.toString()}}));
+
+  return {
+    paths,
+    fallback: false
+  }
+
 }
 
 export default ArticleComponent

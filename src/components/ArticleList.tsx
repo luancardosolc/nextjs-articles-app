@@ -2,10 +2,9 @@ import articleStyle from '../styles/Article.module.css';
 import Article from '../types/article';
 import ArticleItem from './ArticleItem';
 
-const ArticleList = (props: any) => {
-  const { articles } = props;
+const ArticleList = ({ articles }: { articles: Article[] }) => {
   return (
-    <div className={ articleStyle.grid}>
+    <div className={articleStyle.grid}>
       {articles.map((article: Article) => (
         <ArticleItem article={article} key={'article-' + article.id} />
       ))}
