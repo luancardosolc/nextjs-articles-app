@@ -1,7 +1,20 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-const Home: NextPage = () => {
+export const getStaticProps = async () => {
+  console.log('testando ando');
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=6`);
+  const articles = await res.json();
+
+  return {
+    props: {
+      articles
+    }
+  }
+}
+
+const Home: NextPage = ({ articles }) => {
+  console.log('articles', articles);
   return (
     <div>
       <Head>
