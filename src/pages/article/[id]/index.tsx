@@ -6,7 +6,6 @@ import { server } from '../../../config'
 const ArticleComponent = ({ article }: { article: Article }) => {
   const router = useRouter();
   const { id } = router.query;
-  console.log('article', article);
 
   return (
     <>

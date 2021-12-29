@@ -7,10 +7,6 @@ const Home = (props: any) => {
   // console.log('articles', articles);
   return (
     <div>
-      <Head>
-        <title>NextJS Article App</title>
-        <meta name='keyworkds' content='web development, programming, nextjs, javascript' />
-      </Head>
       <ArticleList articles={articles}></ArticleList>
     </div>
   )
